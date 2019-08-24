@@ -4,7 +4,13 @@ metadata:
   name: battleforcastile-gateway
   annotations:
     kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+    - hosts:
+        - auth.battleforcastile.com
+        - match-recorder.battleforcastile.com
+      secretName: letsencrypt-prod
   rules:
   - host: auth.battleforcastile.com
     http:
